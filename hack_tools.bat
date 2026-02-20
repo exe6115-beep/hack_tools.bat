@@ -47,35 +47,35 @@ if "%i%"=="13" goto ipn
 goto MENU
 
 :FIND
-echo Adresi yazin:
+echo adress:
 set /p address=
 netsh wlan show interface | find "%address%"
 pause
 goto MENU
 
 :YFIND
-echo adres bilgileriniz:
+echo ssid:
 echo.
 netsh wlan show interface
 pause
 goto MENU
 
 :ipconfig
-echo adres ip'niz:
+echo ur ip here:
 echo.
 ipconfig
 pause
 goto MENU
 
 :faces
-echo kullanılan adres bilgileri
+echo adress:
 echo.
 netsh wlan show interfaces
 pause
 goto MENU
 
 :del
-echo Silinecek dosyanın adını ve uzantısını yazın mesela x.txt
+echo Enter the name and extension of the file to be deleted, for example, x.txt.
 set /p file=
 echo.
 for /f "delims=" %%i in ('dir /b /s "%file%"') do (
@@ -85,10 +85,10 @@ del %%i
 pause
 goto MENU
 
-:copy
-echo Kopyalanacak dosyanın adını ve uzantısını yazın, mesela x.txt veya klasör
+:copy Enter the name and extension of the file to be copyed, for example, x.txt.
+echo 
 set /p file=
-echo Dosyanın kopyalanacağı yeri yazın
+echo copy adress
 set /p targ=
 echo.
 for /f "delims=" %%i in ('dir /b /s "%file%"') do (
@@ -99,14 +99,14 @@ pause
 goto MENU
 
 :aFIND
-echo Adresi yazin:
+echo adress:
 set /p address=
 netsh wlan show interfaces | find "%address%"
 pause
 goto MENU
 
 :mstsc
-echo Pc adını yazın mesela user-PC
+echo pc name here
 set /p pc=
 mstsc /v:"%pc%"
 pause
@@ -135,7 +135,7 @@ pause
 goto MENU
 
 :ipn
-set /p ip=IP adresini girin: 
+set /p ip=write here ip adress: 
 ping -a -n 1 %ip% | find "Pinging"
 pause
 goto MENU
