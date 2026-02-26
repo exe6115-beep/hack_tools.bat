@@ -1,31 +1,34 @@
 @echo off
+chcp 65001 >nul
 net session >nul 2>&1
 if %errorLevel% neq 0 (
     echo [!] ERROR: Administrative privileges required.
-    echo [!] Please right-click and 'Run as Administrator'.
     pause
     exit
 )
 
 color a
 title hack_tools By 00exe
+mode con: cols=100 lines=30
 cls
+
+:: Loading Effect
 echo [ LOADING SYSTEM MODULES... ]
-powershell -Command "0..15 | ForEach-Object { Write-Host '#' -NoNewline -ForegroundColor Green; Start-Sleep -Milliseconds 40 }"
+powershell -Command "0..10 | ForEach-Object { Write-Host '#' -NoNewline -ForegroundColor Green; Start-Sleep -Milliseconds 30 }"
 echo.
 echo [ ACCESS GRANTED ]
 timeout /t 1 >nul
+
 :MENU
 cls
 echo By 00exe
-chcp 65001 >nul
 echo.
 echo.
-echo     ████████  ██████   ██████  ██      ███████ 
-echo        ██     ██    ██ ██    ██ ██      ██      
-echo        ██     ██    ██ ██    ██ ██      ███████ 
-echo        ██     ██    ██ ██    ██ ██           ██ 
-echo        ██      ██████   ██████  ███████ ███████ 
+echo      ████████  ██████   ██████  ██      ███████ 
+echo         ██     ██    ██ ██    ██ ██      ██      
+echo         ██     ██    ██ ██    ██ ██      ███████ 
+echo         ██     ██    ██ ██    ██ ██           ██ 
+echo         ██      ██████   ██████  ███████ ███████ 
 echo.
 echo ==========================================================================================
 echo  1 - NETWORK FINDER (ADMIN)           10 - CMDKEY HELP
