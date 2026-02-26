@@ -1,7 +1,8 @@
-# [ [Türkçe](#-00exe-hack-tools-batch--powershell-tr) | [English](#-00exe-hack-tools-batch--powershell) ]
+# [ [English](#english) | [Türkçe](#türkçe) ]
 
 ---
 
+<a name="english"></a>
 # 🛠️ 00exe Hack Tools (Batch & PowerShell)
 
 A lightweight and effective script that brings together Windows system management, network scanning, and remote connection tools.
@@ -25,7 +26,7 @@ To ensure all features work correctly, the following are required:
 3. For remote connections (Options 14-15), ensure you have the target device's username and password.
 
 ---
-
+<a name="türkçe"></a>
 # 🛠️ 00exe Hack Tools (Batch & PowerShell-TR)
 
 Windows sistem yönetimi, ağ tarama ve uzak bağlantı araçlarını bir araya getiren hafif ve etkili bir script.
