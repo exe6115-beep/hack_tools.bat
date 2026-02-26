@@ -1,7 +1,7 @@
 @echo off
 chcp 65001 >nul
 net session >nul 2>&1
-if %errorLevel% neq 0 (
+if %errorlevel% neq 0 (
     echo [!] ERROR: Administrative privileges required.
     pause
     exit
@@ -9,39 +9,51 @@ if %errorLevel% neq 0 (
 
 color a
 title hack_tools By 00exe
-mode con: cols=100 lines=30
+mode con: cols=160 lines=45
 cls
 
-echo [ LOADING SYSTEM MODULES... ]
-:: Powershell kısmında tırnaklara dikkat!
-powershell -Command "0..10 | ForEach-Object { Write-Host '#' -NoNewline -ForegroundColor Green; Start-Sleep -Milliseconds 30 }"
 echo.
-echo [ ACCESS GRANTED ]
+echo [ SYSTEM INITIALIZING... ]
+powershell -Command "0..30 | ForEach-Object { Write-Host '-' -NoNewline -ForegroundColor Green; Start-Sleep -Milliseconds 20 }"
+echo.
+echo [ ACCESS GRANTED - WELCOME ]
 timeout /t 1 >nul
 
 :MENU
 cls
-echo By 00exe
 echo.
 echo.
-echo      ████████  ██████   ██████  ██      ███████ 
-echo         ██     ██    ██ ██    ██ ██      ██      
-echo         ██     ██    ██ ██    ██ ██      ███████ 
-echo         ██     ██    ██ ██    ██ ██           ██ 
-echo         ██      ██████   ██████  ███████ ███████ 
+:: DAHA BÜYÜK LOGO
+echo        --¬  --¬ -----¬  ------¬--¬  --¬--------¬ ------¬  ------¬ --¬     -------¬
+echo        --¦  --¦---==--¬---====---¦ ----L==---==----===--¬---===--¬--¦     ---====-
+echo        -------¦-------¦--¦     -------    --¦   --¦   --¦--¦   --¦--¦     -------¬
+echo        ---==--¦---==--¦--¦     ---=--¬    --¦   --¦   --¦--¦   --¦--¦     L====--¦
+echo        --¦  --¦--¦  --¦L------¬--¦  --¬   --¦   L--------L---------------¬-------¦
+echo        L=-  L=-L=-  L=- L=====-L=-  L=-   L=-    L=====-  L=====- L======-L======-
 echo.
-echo ==========================================================================================
-echo  1 - NETWORK FINDER (ADMIN)           10 - CMDKEY HELP
-echo  2 - YOUR NETWORK (ADMIN)             11 - LAN DEBUG
-echo  3 - SHOW LOCAL IP                    12 - SHOW PUBLIC IP
-echo  4 - NETWORK INTERFACE INFO           13 - HOSTNAME BY IP (Reverse DNS)
-echo  5 - FILE DELETER                     14 - REMOTE CMD (PsExec)
-echo  6 - FILE COPY                        15 - CMD REMOTE PRO
-echo  7 - NETWORK FINDER (USER)            16 - FIREWALL CONTROLLER (ADMIN)
-echo  8 - REMOTE DESKTOP (MSTSC)           17 - ARP ADDRESS SCAN
-echo  9 - REMOTE DESKTOP HELP              18 - PORT SCANNER (PowerShell)
-echo  19 - LOG CLEAR
-echo ==========================================================================================
+echo                                         STATION: 00exe-CLI-v1.0
+echo ________________________________________________________________________________________________________________________
+echo.
+echo    [1] - NETWORK FINDER (ADMIN)               [10] - CMDKEY HELP
+echo.
+echo    [2] - YOUR NETWORK (ADMIN)                 [11] - LAN DEBUG
+echo.
+echo    [3] - SHOW LOCAL IP                        [12] - SHOW PUBLIC IP
+echo.
+echo    [4] - NETWORK INTERFACE INFO               [13] - HOSTNAME BY IP (Reverse DNS)
+echo.
+echo    [5] - FILE DELETER                         [14] - REMOTE CMD (PsExec)
+echo.
+echo    [6] - FILE COPY                            [15] - CMD REMOTE PRO
+echo.
+echo    [7] - NETWORK FINDER (USER)                [16] - FIREWALL CONTROLLER (ADMIN)
+echo.
+echo    [8] - REMOTE DESKTOP (MSTSC)               [17] - ARP ADDRESS SCAN
+echo.
+echo    [9] - REMOTE DESKTOP HELP                  [18] - PORT SCANNER (PowerShell)
+echo.
+echo                               [19] - LOG CLEAR
+echo ________________________________________________________________________________________________________________________
 echo.
 set /p i=Select an option:
 
