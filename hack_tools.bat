@@ -29,7 +29,11 @@ echo 10 - CMDKEY HELP
 echo 11 - LAN DEBUG
 echo 12 - YOUR IP
 echo 13 - IP NAME FINDER
-set /p i=Seciminiz:
+echo 14 - CMD REMOTE
+echo 15 - CMD REMOTE PRO
+echo 16 - ADMIN FIREWALL
+echo 17 - ADRESS SCAN
+set /p i=Your choose:
 
 if "%i%"=="1" goto FIND
 if "%i%"=="2" goto YFIND
@@ -44,6 +48,10 @@ if "%i%"=="10" goto cmdkey?
 if "%i%"=="11" goto LAN
 if "%i%"=="12" goto IP
 if "%i%"=="13" goto ipn
+if "%i%"=="14" goto cmdr
+if "%i%"=="15" goto cmdrp
+if "%i%"=="16" goto fad
+if "%i%"=="17" goto arp
 goto MENU
 
 :FIND
@@ -137,5 +145,61 @@ goto MENU
 :ipn
 set /p ip=write here ip adress: 
 ping -a -n 1 %ip% | find "Pinging"
+pause
+goto MENU
+
+:cmdr
+cls
+echo === CMD REMOTE (PsExec) ===
+echo.
+echo if you using this you need to go website(https://learn.microsoft.com/tr-tr/sysinternals/downloads/psexec)and download the PStools
+echo IP Adress here(e.g. 192.168.1.50):
+set /p target_ip=
+echo Host Name (e.g. Administrator):
+set /p pc_user=
+echo password (If it has not password press enter only):
+set /p pc_pass=
+echo.
+echo Access trying
+psexec \\%target_ip% -u %pc_user% -p "%pc_pass%" cmd
+pause
+goto MENU
+
+:fad
+cls
+echo === FIREWALL ===
+echo.
+echo If you accept this others host has no firewall!
+echo Are you sure? [Y/N]
+set /p onay=
+if /i "%onay%"=="N" goto MENU
+if /i "%onay%"=="Y" (
+    netsh advfirewall set allprofiles state off
+    echo.
+    echo [!] Firewall access accepted
+) else (
+    echo acess denied
+)
+pause
+goto MENU
+
+:arp
+arp -a
+pause
+goto MENU
+
+:scanner
+cls
+echo === PORT & NETWORK SCANNER ===
+echo.
+set /p net_prefix=Enter IP Network (e.g., 192.168.1): 
+set /p target_port=Enter Port to Scan (e.g., 3389): 
+echo Scanning network... This may take a while.
+echo.
+
+powershell -Command "1..254 | ForEach-Object { $ip = '%net_prefix%.' + $_; if (Test-NetConnection -ComputerName $ip -Port %target_port% -WarningAction SilentlyContinue -InformationLevel Quiet) { Write-Host '[+] Found: ' $ip -ForegroundColor Green } }"
+
+echo.
+echo Scan completed.
 pause
 goto MENU
