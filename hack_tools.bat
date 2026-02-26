@@ -1,5 +1,4 @@
 @echo off
-chcp 65001 >nul
 net session >nul 2>&1
 if %errorLevel% neq 0 (
     echo [!] ERROR: Administrative privileges required.
@@ -18,8 +17,8 @@ echo [ ACCESS GRANTED ]
 timeout /t 1 >nul
 :MENU
 cls
-mode con: cols=100 lines=30
 echo By 00exe
+chcp 65001 >nul
 echo.
 echo.
 echo          ████████  ██████   ██████  ██      ███████ 
