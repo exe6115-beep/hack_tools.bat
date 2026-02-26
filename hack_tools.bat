@@ -1,40 +1,45 @@
 @echo off
-chcp 65001 >nul
+net session >nul 2>&1
+if %errorLevel% neq 0 (
+    echo [!] ERROR: Administrative privileges required.
+    echo [!] Please right-click and 'Run as Administrator'.
+    pause
+    exit
+)
+
 color a
+title hack_tools By 00exe
+cls
+echo [ LOADING SYSTEM MODULES... ]
+powershell -Command "0..15 | ForEach-Object { Write-Host '#' -NoNewline -ForegroundColor Green; Start-Sleep -Milliseconds 40 }"
+echo.
+echo [ ACCESS GRANTED ]
+timeout /t 1 >nul
 :MENU
+mode con: cols=100 lines=30
 cls
 echo By 00exe
-title TOOLS
 echo.
 echo.
-echo					████████  ██████   ██████  ██      ███████ 
-echo					   ██    ██    ██ ██    ██ ██      ██      
-echo					   ██    ██    ██ ██    ██ ██      ███████ 
-echo					   ██    ██    ██ ██    ██ ██           ██ 
-echo					   ██     ██████   ██████  ███████ ███████                                                                         						                           
+echo          ████████  ██████   ██████  ██      ███████ 
+echo             ██     ██    ██ ██    ██ ██      ██      
+echo             ██     ██    ██ ██    ██ ██      ███████ 
+echo             ██     ██    ██ ██    ██ ██           ██ 
+echo             ██      ██████   ██████  ███████ ███████ 
 echo.
+echo ==========================================================================================
+echo  1 - NETWORK FINDER (ADMIN)           10 - CMDKEY HELP
+echo  2 - YOUR NETWORK (ADMIN)             11 - LAN DEBUG
+echo  3 - SHOW LOCAL IP                    12 - SHOW PUBLIC IP
+echo  4 - NETWORK INTERFACE INFO           13 - HOSTNAME BY IP (Reverse DNS)
+echo  5 - FILE DELETER                     14 - REMOTE CMD (PsExec)
+echo  6 - FILE COPY                        15 - CMD REMOTE PRO
+echo  7 - NETWORK FINDER (USER)            16 - FIREWALL CONTROLLER (ADMIN)
+echo  8 - REMOTE DESKTOP (MSTSC)           17 - ARP ADDRESS SCAN
+echo  9 - REMOTE DESKTOP HELP              18 - PORT SCANNER (PowerShell)
+echo ==========================================================================================
 echo.
-
-
-echo 1 - NETWORK FINDER(ADMIN)
-echo 2 - YOUR NETWORK(ADMIN)
-echo 3 - YOUR ADRESS IP
-echo 4 - NETWORK INFORMATION USED(NO ADMIN)
-echo 5 - FILE DELETER
-echo 6 - FILE COPY
-echo 7 - NETWORK FINDER(NO ADMIN)
-echo 8 - REMOTE DESKTOP(WARNING!!!!)
-echo 9 - REMOTE DESTKOP HELP
-echo 10 - CMDKEY HELP
-echo 11 - LAN DEBUG
-echo 12 - YOUR IP
-echo 13 - IP NAME FINDER
-echo 14 - CMD REMOTE
-echo 15 - CMD REMOTE PRO
-echo 16 - ADMIN FIREWALL
-echo 17 - ADRESS SCAN
-echo 18 - PORT NETWORK SCAN
-set /p i=Your choose:
+set /p i=Select an option:
 
 if "%i%"=="1" goto FIND
 if "%i%"=="2" goto YFIND
@@ -57,66 +62,66 @@ if "%i%"=="18" goto scan
 goto MENU
 
 :FIND
-echo adress:
+echo Target SSID/Address:
 set /p address=
 netsh wlan show interface | find "%address%"
 pause
 goto MENU
 
 :YFIND
-echo ssid:
+echo Listing local wireless interfaces...
 echo.
 netsh wlan show interface
 pause
 goto MENU
 
 :ipconfig
-echo ur ip here:
+echo Displaying IP configuration...
 echo.
 ipconfig
 pause
 goto MENU
 
 :faces
-echo adress:
+echo Displaying all network interfaces...
 echo.
 netsh wlan show interfaces
 pause
 goto MENU
 
 :del
-echo Enter the name and extension of the file to be deleted, for example, x.txt.
+echo Enter file name and extension to delete (e.g., secret.txt):
 set /p file=
 echo.
 for /f "delims=" %%i in ('dir /b /s "%file%"') do (
-    echo %%i
-del %%i
+    echo Deleting: %%i
+    del "%%i"
 )
 pause
 goto MENU
 
-:copy Enter the name and extension of the file to be copyed, for example, x.txt.
-echo 
+:copy
+echo Enter file name and extension to copy:
 set /p file=
-echo copy adress
+echo Enter destination path:
 set /p targ=
 echo.
 for /f "delims=" %%i in ('dir /b /s "%file%"') do (
-    echo %%i
+    echo Copying: %%i
     copy "%%i" "%targ%"
 )
 pause
 goto MENU
 
 :aFIND
-echo adress:
+echo Enter target address:
 set /p address=
 netsh wlan show interfaces | find "%address%"
 pause
 goto MENU
 
 :mstsc
-echo pc name here
+echo Enter remote PC Name or IP:
 set /p pc=
 mstsc /v:"%pc%"
 pause
@@ -127,84 +132,82 @@ mstsc /?
 pause
 goto MENU
 
-
 :cmdkey?
-cmdkey
-start cmd
+echo Running cmdkey...
+cmdkey /list
 pause
 goto MENU
 
 :LAN
+echo Checking active connections...
 netstat -n
 pause
 goto MENU
 
 :IP
+echo Fetching Public IP...
 curl ip.sb
+echo.
 pause
 goto MENU
 
 :ipn
-set /p ip=write here ip adress: 
+set /p ip=Enter IP address to resolve: 
 ping -a -n 1 %ip% | find "Pinging"
 pause
 goto MENU
 
 :cmdr
 cls
-echo === CMD REMOTE (PsExec) ===
+echo === REMOTE CMD (PsExec Required) ===
 echo.
-echo if you using this you need to go website(https://learn.microsoft.com/tr-tr/sysinternals/downloads/psexec)and download the PStools
-echo IP Adress here(e.g. 192.168.1.50):
+echo Download PsTools if not installed.
+echo Target IP:
 set /p target_ip=
-echo Host Name (e.g. Administrator):
+echo Username (e.g., Administrator):
 set /p pc_user=
-echo password (If it has not password press enter only):
+echo Password (Leave blank if none):
 set /p pc_pass=
 echo.
-echo Access trying
+echo Attempting connection...
 psexec \\%target_ip% -u %pc_user% -p "%pc_pass%" cmd
 pause
 goto MENU
 
 :fad
 cls
-echo === FIREWALL ===
+echo === FIREWALL CONTROLLER ===
 echo.
-echo If you accept this others host has no firewall!
-echo Are you sure? [Y/N]
+echo WARNING: Disabling firewall makes the system vulnerable!
+echo Confirm action? [Y/N]
 set /p onay=
 if /i "%onay%"=="N" (
-netsh advfirewall set allprofiles state on
-goto MENU
+    netsh advfirewall set allprofiles state on
+    echo Firewall is now ENABLED.
 )
 if /i "%onay%"=="Y" (
     netsh advfirewall set allprofiles state off
-    echo.
-    echo [!] Firewall access accepted
-) else (
-    echo acess denied
+    echo [!] Firewall is now DISABLED.
 )
 pause
 goto MENU
 
 :arp
+echo Scanning ARP table...
 arp -a
 pause
 goto MENU
 
 :scan
 cls
-echo === PORT & NETWORK SCANNER ===
+echo === NETWORK PORT SCANNER ===
 echo.
 set /p net_prefix=Enter IP Network (e.g., 192.168.1): 
-set /p target_port=Enter Port to Scan (e.g., 3389): 
-echo Scanning network... This may take a while.
+set /p target_port=Enter Port to Scan (e.g., 80, 443, 3389): 
 echo.
-
+echo Scanning... Please wait.
 powershell -Command "1..254 | ForEach-Object { $ip = '%net_prefix%.' + $_; if (Test-NetConnection -ComputerName $ip -Port %target_port% -WarningAction SilentlyContinue -InformationLevel Quiet) { Write-Host '[+] Found: ' $ip -ForegroundColor Green } }"
-
 echo.
-echo Scan completed.
+echo Scan complete.
 pause
 goto MENU
