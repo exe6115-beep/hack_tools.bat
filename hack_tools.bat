@@ -37,6 +37,7 @@ echo  6 - FILE COPY                        15 - CMD REMOTE PRO
 echo  7 - NETWORK FINDER (USER)            16 - FIREWALL CONTROLLER (ADMIN)
 echo  8 - REMOTE DESKTOP (MSTSC)           17 - ARP ADDRESS SCAN
 echo  9 - REMOTE DESKTOP HELP              18 - PORT SCANNER (PowerShell)
+echo  19 - LOG CLEAR
 echo ==========================================================================================
 echo.
 set /p i=Select an option:
@@ -59,6 +60,7 @@ if "%i%"=="15" goto cmdrp
 if "%i%"=="16" goto fad
 if "%i%"=="17" goto arp
 if "%i%"=="18" goto scan
+if "%i%"=="19" goto log
 goto MENU
 
 :FIND
@@ -203,11 +205,23 @@ cls
 echo === NETWORK PORT SCANNER ===
 echo.
 set /p net_prefix=Enter IP Network (e.g., 192.168.1): 
-set /p target_port=Enter Port to Scan (e.g., 80, 443, 3389): 
+set /p target_port=Enter Port to Scan (e.g., 3389): 
 echo.
-echo Scanning... Please wait.
-powershell -Command "1..254 | ForEach-Object { $ip = '%net_prefix%.' + $_; if (Test-NetConnection -ComputerName $ip -Port %target_port% -WarningAction SilentlyContinue -InformationLevel Quiet) { Write-Host '[+] Found: ' $ip -ForegroundColor Green } }"
+echo Scanning... Results will be saved to port_scan_log.txt
 echo.
-echo Scan complete.
+powershell -Command "Get-Date | Out-File -FilePath .\scan_results.txt -Append"
+powershell -Command "1..254 | ForEach-Object { $ip = '%net_prefix%.' + $_; if (Test-NetConnection -ComputerName $ip -Port %target_port% -WarningAction SilentlyContinue -InformationLevel Quiet) { $found = '[+] Found: ' + $ip; Write-Host $found -ForegroundColor Green; $found | Out-File -FilePath .\port_scan_log.txt -Append } }"
+echo.
+echo Scan complete. Check port_scan_log.txt for logs.
+pause
+goto MENU
+
+:log
+if exist port_scan_log.txt (
+    del port_scan_log.txt
+    echo [!] Logs have been wiped.
+) else (
+    echo [?] No logs found to delete.
+)
 pause
 goto MENU
