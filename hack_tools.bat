@@ -31,10 +31,9 @@ echo 12 - YOUR IP
 echo 13 - IP NAME FINDER
 echo 14 - CMD REMOTE
 echo 15 - CMD REMOTE PRO
-echo 16 - CMD REMOTE PATH (YOU NEED THIS)
-echo 17 - ADMIN FIREWALL
-echo 18 - ADRESS SCAN
-echo 19 - PORT NETWORK SCAN
+echo 16 - ADMIN FIREWALL
+echo 17 - ADRESS SCAN
+echo 18 - PORT NETWORK SCAN
 set /p i=Your choose:
 
 if "%i%"=="1" goto FIND
@@ -52,10 +51,9 @@ if "%i%"=="12" goto IP
 if "%i%"=="13" goto ipn
 if "%i%"=="14" goto cmdr
 if "%i%"=="15" goto cmdrp
-if "%i%"=="16" goto pth
-if "%i%"=="17" goto fad
-if "%i%"=="18" goto arp
-if "%i%"=="19" goto scan
+if "%i%"=="16" goto fad
+if "%i%"=="17" goto arp
+if "%i%"=="18" goto scan
 goto MENU
 
 :FIND
@@ -176,7 +174,10 @@ echo.
 echo If you accept this others host has no firewall!
 echo Are you sure? [Y/N]
 set /p onay=
-if /i "%onay%"=="N" goto MENU
+if /i "%onay%"=="N" (
+netsh advfirewall set allprofiles state on
+goto MENU
+)
 if /i "%onay%"=="Y" (
     netsh advfirewall set allprofiles state off
     echo.
@@ -205,10 +206,5 @@ powershell -Command "1..254 | ForEach-Object { $ip = '%net_prefix%.' + $_; if (T
 
 echo.
 echo Scan completed.
-pause
-goto MENU
-
-:pth
-cd PSTools
 pause
 goto MENU
