@@ -180,13 +180,9 @@ echo.
 echo Download PsTools if not installed.
 echo Target IP:
 set /p target_ip=
-echo Username (e.g., Administrator):
-set /p pc_user=
-echo Password (Leave blank if none):
-set /p pc_pass=
 echo.
 echo Attempting connection...
-psexec \\%target_ip% -u %pc_user% -p "%pc_pass%" cmd
+psexec \\%target_ip% -s cmd
 pause
 goto MENU
 
