@@ -1,6 +1,7 @@
 # [ [English](#english) | [Türkçe](#türkçe) ]
 
 ---
+![00exe-CLI-v4.0](toolspng.png)
 
 <a name="english"></a>
 
