@@ -3,51 +3,64 @@
 ---
 
 <a name="english"></a>
-# 🛠️ 00exe Hack Tools (Batch & PowerShell)
 
-A lightweight and effective script that brings together Windows system management, network scanning, and remote connection tools.
+🛠️ 00exe Hack Tools (v4.0 Platinum Edition)
+A professional-grade CLI suite combining Windows system administration, network exploitation, and remote deployment tools. Version 4.0 introduces advanced C2 (Command & Control) bot integration and administrative security bypasses.
 
-## 🚀 Features
-* **Network Scanning:** ARP and PowerShell-based port scanner (RDP 3389, etc.).
-* **Remote Access:** Terminal access with PsExec integration and MSTSC support.
-* **Firewall Management:** One-click Firewall control.
-* **File Management:** Advanced file deletion and copying tools.
+🚀 New Features (v4.0)
+🤖 Virtual Botnet: Remote deployment of custom payloads (like c2bot.exe) using PsExec with stealth (-d) mode.
 
-## 🛠️ Installation & Requirements
-To ensure all features work correctly, the following are required:
+🔓 Admin Share & UAC Bypass: One-click activation of ADMIN$ shares and LocalAccountTokenFilterPolicy for seamless remote access.
 
-* **PsExec:** [Sysinternals PsTools](https://learn.microsoft.com/en-us/sysinternals/downloads/psexec) must be downloaded, and `psexec.exe` should be added to your system PATH.
-* **PowerShell 5.1+:** Required for the port scanning features (Comes pre-installed with Windows 10/11).
-* **Administrator Privileges:** The script must be **"Run as Administrator"** for commands like Firewall and Netsh to function.
+🛡️ Enhanced Firewall Control: Full control over all network profiles (Public/Private/Domain).
 
-## 📖 How to Use
-1. Right-click `hack_tools.bat` and select **"Run as Administrator"**.
-2. Enter the number of the action you want to perform from the menu.
-3. For remote connections (Options 14-15), ensure you have the target device's username and password.
+⚡ RDP Kill & Remote Fix: Terminate active RDP sessions or remotely enable RDP via Registry (Option 16 & 20).
 
----
+🔍 Advanced Port Scanner: Multi-threaded PowerShell scanning with automated logging to port_scan_log.txt.
+
+🛠️ Requirements
+Administrator Privileges: REQUIRED. The script checks for admin rights at startup.
+
+PsExec (Sysinternals): Essential for remote deployment. Add it to your PATH or provide the path within the script.
+
+Python (Optional): Required only if you are compiling your own c2bot.exe with PyArmor.
+
+📖 How to Use
+Right-click hack_tools.bat and "Run as Administrator".
+
+Setup Access (22): Use the "Admin Share" option on the target (if accessible) to prepare it for remote commands.
+
+Deploy (21): Use the "Virtual Botnet" option to push your compiled bot to the target network.
+
 <a name="türkçe"></a>
-# 🛠️ 00exe Hack Tools (Batch & PowerShell-TR)
 
-Windows sistem yönetimi, ağ tarama ve uzak bağlantı araçlarını bir araya getiren hafif ve etkili bir script.
+🛠️ 00exe Hack Tools (v4.0 Platinum Sürümü)
+Windows sistem yönetimi, ağ sızma testleri ve uzak dağıtım araçlarını birleştiren profesyonel bir CLI paketi. v4.0 sürümü, gelişmiş C2 bot entegrasyonu ve yönetici güvenlik atlatmalarını (bypass) içerir.
 
-## 🚀 Özellikler
-* **Ağ Tarama:** ARP ve PowerShell tabanlı port tarayıcı (RDP 3389 vb.).
-* **Uzak Erişim:** PsExec entegrasyonu ile terminal erişimi ve MSTSC desteği.
-* **Güvenlik Duvarı:** Tek tıkla Firewall yönetimi.
-* **Dosya Yönetimi:** Gelişmiş dosya silme ve kopyalama araçları.
+🚀 Yeni Özellikler (v4.0)
+🤖 Sanal Botnet: Özel dosyalarınızı (c2bot.exe vb.) PsExec kullanarak hedef makinelere gizli modda (-d) otomatik yükleme ve çalıştırma.
 
-## 🛠️ Kurulum ve Gereksinimler
-Bu araçların tam verimli çalışması için şunlar gereklidir:
+🔓 Admin Paylaşımı ve UAC Atlatma: Uzaktan erişim kısıtlamalarını kaldırmak için ADMIN$ paylaşımlarını ve LocalAccountTokenFilterPolicy kaydını tek tıkla aktif etme.
 
-* **PsExec:** [Sysinternals PsTools](https://learn.microsoft.com/tr-tr/sysinternals/downloads/psexec) indirilmeli ve `psexec.exe` dosya yolu (PATH) sistemine eklenmelidir.
-* **PowerShell 5.1+:** Port tarama özelliği için gereklidir (Windows 10/11 ile hazır gelir).
-* **Yönetici İzni:** Bazı komutlar (Firewall, Netsh) için scriptin **Yönetici olarak** çalıştırılması gerekir.
+🛡️ Gelişmiş Firewall Yönetimi: Tüm ağ profillerini (Ortak/Özel/Etki Alanı) tam denetleme.
 
-## 📖 Kullanım
-1. `hack_tools.bat` dosyasını sağ tıklayıp **"Yönetici Olarak Çalıştır"** deyin.
-2. Menüden yapmak istediğiniz işlemin numarasını girin.
-3. Uzak bağlantı (14-15) için hedef cihazın kullanıcı adı ve şifresine sahip olduğunuzdan emin olun.
+⚡ RDP Kill ve Uzak Onarım: Aktif RDP oturumlarını sonlandırma veya Registry üzerinden uzaktan RDP protokolünü aktif etme.
 
-## ⚠️ Disclaimer / Uyarı
-This tool is designed for educational purposes and testing on your own network only. / Bu araç sadece eğitim ve kendi ağınızdaki testler için tasarlanmıştır.
+🔍 PowerShell Port Tarayıcı: port_scan_log.txt dosyasına otomatik kayıt yapan, PowerShell tabanlı hızlı tarama.
+
+🛠️ Gereksinimler
+Yönetici İzni: ZORUNLUDUR. Script açılışta admin yetkisi kontrolü yapar.
+
+PsExec (Sysinternals): Uzak dağıtım için gereklidir. PATH'e eklenmeli veya script içinden yolu gösterilmelidir.
+
+Python (İsteğe Bağlı): Sadece kendi c2bot.exe dosyanızı PyArmor ile derlemek isterseniz gereklidir.
+
+📖 Kullanım
+hack_tools.bat dosyasına sağ tıklayıp "Yönetici Olarak Çalıştır" deyin.
+
+Erişim Hazırlığı (22): Hedef makinede uzaktan komut çalıştırmayı engelleyen kısıtlamaları "Admin Share" seçeneği ile kaldırın.
+
+Dağıtım (21): Derlediğiniz botu ağdaki hedef cihazlara göndermek için "Virtual Botnet" seçeneğini kullanın.
+
+⚠️ Disclaimer / Uyarı
+This tool is strictly for educational purposes and authorized penetration testing. / Bu araç yalnızca eğitim amaçlıdır ve sadece izinli olduğunuz ağlarda sızma testi için kullanılmalıdır.
