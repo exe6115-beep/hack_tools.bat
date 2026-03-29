@@ -4,7 +4,7 @@
 
 <a name="english"></a>
 
-🛠️ 00exe Hack Tools (v4.0 Platinum Edition)
+🛠️ 00exe Hack Tools (v4.0)
 A professional-grade CLI suite combining Windows system administration, network exploitation, and remote deployment tools. Version 4.0 introduces advanced C2 (Command & Control) bot integration and administrative security bypasses.
 
 🚀 New Features (v4.0)
@@ -34,7 +34,7 @@ Deploy (21): Use the "Virtual Botnet" option to push your compiled bot to the ta
 
 <a name="türkçe"></a>
 
-🛠️ 00exe Hack Tools (v4.0 Platinum Sürümü)
+🛠️ 00exe Hack Tools (v4.0)
 Windows sistem yönetimi, ağ sızma testleri ve uzak dağıtım araçlarını birleştiren profesyonel bir CLI paketi. v4.0 sürümü, gelişmiş C2 bot entegrasyonu ve yönetici güvenlik atlatmalarını (bypass) içerir.
 
 🚀 Yeni Özellikler (v4.0)
